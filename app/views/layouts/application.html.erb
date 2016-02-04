@@ -7,6 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <% flash.each do |message_type, message | %>
+    <%=content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
+  </div>
+<!-- <a href="/hello">hello</a> || <a href="/about">about</a> -->
+<!-- <%# route helpers: generated from the contents of routes.rb that can be used in all files and all controllers %>
+<a href="<%= hello_path %>">hello</a> ||
+<a href="<%= about_path %>">about</a> ||
+<a href="<%= greet_path("John") %>">Greet John</a> -->
+<%= link_to "Hello", hello_url %> ||
+<%= link_to "About", about_path %> ||
+<%= link_to "Greeting", greet_path("John") %> ||
+<%= link_to "Subscribe", subscribe_path  %>
+<%= link_to "Submit Question", new_question_path %>
+<%= link_to "Recent Questions", questions_path %>
+<!-- <a href="<%= greet_path({name: 'John'}) %>">Greet John</a> -->
 
 <%= yield %>
 

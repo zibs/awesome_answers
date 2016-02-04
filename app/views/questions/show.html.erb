@@ -1,0 +1,11 @@
+<h1><%= @question.title %></h1>
+
+<p><%= @question.body %></p>
+<p>view count: <b><%= @question.view_count %></b></p>
+
+<p><%= @question.created_at %></p>
+<p><%= link_to "Edit", edit_question_path(@question)  %></p>
+<%# method: :delete asks rails to send a delete request instead of get which is accomplished using javascript and jQuery %>
+<p><%= link_to "Delete", question_path(@question),
+                         method: :delete,
+                         data: { confirm: "Are you sure?" }  %></p>
