@@ -1,18 +1,3 @@
 <h1>Edit Question</h1>
-<%= @question.errors.full_messages.join(", ") %>
-<%# if @question IS persisted, then the form will use PATCH by adding a hidden field with name _method and value PATCH. The action URL will be question_path(@question) %>
-<%= form_for @question do |f| %>
-<%# we call 'f' the form object - will prepopulate values and will be able to access error messages as well. %>
-<div>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%# with `f` we don't need to use _tags %>
-</div>
-<div>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-</div>
-<div>
-  <%= f.submit %>
-</div>
-<% end %>
+
+<%= render "form" %>

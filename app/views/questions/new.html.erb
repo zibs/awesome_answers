@@ -1,18 +1,6 @@
 <h1>New Questions</h1>
-<%= @question.errors.full_messages.join(", ") %>
-<%# form_for takes in an ActiveRecord object as a first argument. Then it looks at the object. If the object is not persisted (not yet saved to the database), the form will automatically use POST for its method. It will also automatically use questions_path as its action (convention is that the 'questions_path' will submit to the 'create' action). If persisted, then Rails assumes that we want to UPDATE it.  %>
-<%= form_for @question do |f| %>
-<%# we call 'f' the form object - will prepopulate values and will be able to access error messages as well. %>
-<div>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%# with `f` we don't need to use _tags %>
-</div>
-<div>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-</div>
-<div>
-  <%= f.submit %>
-</div>
-<% end %>
+<%# this will look for a partial named "_form" within the same folder as the template. the partial will have access to the same instance variab;es that the template has access to` %>
+<%# we can pass local bvariables by passing a has to the partial as in:  %>
+<%# render "form", my_var: variable %>
+<%# so inside the partial the local variable will be key, not instance variable %>
+<%= render "form" %>

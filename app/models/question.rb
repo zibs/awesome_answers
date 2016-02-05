@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
             # uniqueness: {case_sensitive: false},
 
   # specify err msg
-  validates :body, uniqueness: {message: "must be unique"}
+  validates :body, presence: true, uniqueness: {message: "must be unique"}
 
   # this validates that the combination of the title and the body are unique. This means that neither the title nor the body have to be unique by themselves. However, their combination is to be unique.
   validates :title, uniqueness: {scope: :body}
@@ -32,7 +32,6 @@ class Question < ActiveRecord::Base
   def self.search(term)
     where(["title ILIKE ? OR body ILIKE ?", "%#{term}%", "%#{term}%"]).order("view_count DESC")
   end
-
 
     private
 
