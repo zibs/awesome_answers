@@ -37,6 +37,8 @@ class QuestionsController < ApplicationController
     # @question = Question.find(params[:id])
     @question.view_count += 1
     @question.save
+    
+    @answer = Answer.new
   end
 
   def edit
@@ -65,7 +67,6 @@ class QuestionsController < ApplicationController
       def question_params
         params.require(:question).permit([:title, :body])
       end
-
             #params =>  {"question"=>{"title"=>"Hello World", "body"=>"this is a test"}}
             # question = Question.new([:params])
             # using params.require ensures there is a key called `question` in my params. the `permit` method will only allow parameters that are explicitly listed. In this case, title and body.
@@ -74,6 +75,5 @@ class QuestionsController < ApplicationController
       def find_question
         @question = Question.find(params[:id])
       end
-
 
 end

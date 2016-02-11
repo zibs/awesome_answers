@@ -9,3 +9,40 @@
 <p><%= link_to "Delete", question_path(@question),
                          method: :delete,
                          data: { confirm: "Are you sure?" }  %></p>
+
+<hr>
+<h2>Answers</h2>
+<h3>Create an Answer</h3>
+
+<%# @answer.errors.full_messages.join(", ") %>
+<% if @answer.errors.any? %>
+<ul>
+  <% @answer.errors.full_messages.each do |error_msg| %>
+    <li style = "color: red"><%= error_msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<%# pass an array of parent resource and child resource to the form for. This is a better approach for creating nested resources. Works with both new and edit situations. So if an answer is not persisted, it will send POST request to question_answer_path and otherwise it will send PATCH request to _question_answer_path(@question, @answer) %>
+
+<%= form_for [@question, @answer] do |f| %>
+<div>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+</div>
+<div>
+  <%= f.submit %>
+</div>
+<% end %>
+
+<h2>Answers:</h2>
+<% @question.answers.each do |ans| %>
+  <%= ans.body %>
+  <%= link_to "Delete", [@question, ans], method: :delete, data: { confirm: "Are you sure?!" } %>
+  <hr>
+<% end %>
+
+<%# we could use this form after overiding the URL parameter - the downside is that it won't work for 'edit' situations. Only works in the create action. So it's not reusable if we decide to be able to edit an answer.  %>
+<%# form_for @answer, url: question_answers_path(@question) do |f|  %>
+<%#  %>
+<%# end %>

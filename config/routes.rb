@@ -14,7 +14,18 @@ Rails.application.routes.draw do
 
   # helper method to make it easier to use new_question_path
 
-  resources :questions
+  resources :questions do
+
+    # targets general controller, not the particular record, *collection* of records
+    get :search,      on: :collection
+    # targeting a *particular* route that is of type question
+    patch :mark_done, on: :member
+    # nested route, has the full question_id
+    post :approve
+
+    # by defining 'resources' answers nesed inside 'resources :question' rails will define all the answers routes prepended wtih /questions/:question_id/...This enables us to have the question_id handy so that we can easily create a question with `question_id`.
+    resources :answers, only: [:create, :destroy]
+  end
 
   #########################################################
   #########################################################

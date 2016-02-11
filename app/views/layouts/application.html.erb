@@ -7,15 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
-  <%= notice || alert %>
-  <%# flash[:notice] || flash[:alert] %>
+  <!-- <%= notice || alert %> -->
+  <%= flash[:notice] || flash[:alert] %>
   <!-- <div class="container">
     <% flash.each do |message_type, message | %>
     <%=content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
   </div> -->
-
+  
 <!-- <a href="/hello">hello</a> || <a href="/about">about</a> -->
 <!-- <%# route helpers: generated from the contents of routes.rb that can be used in all files and all controllers %>
 <a href="<%= hello_path %>">hello</a> ||

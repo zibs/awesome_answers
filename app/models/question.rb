@@ -1,4 +1,9 @@
 class Question < ActiveRecord::Base
+  # This assumes that the answer model has a question_id integer field that references the question.
+  # possible values for dependent are :destroy or :nullify. :Destroy will delete all associated answers. :Nullify will update the question_id to be NULL for the associated records (they won't get deleted)
+
+  has_many :answers, dependent: :nullify
+
   # adding validation
   validates :title, presence: true,
             uniqueness: true,
@@ -17,6 +22,7 @@ class Question < ActiveRecord::Base
   # using custom validation methods. We must make sure that 'no monkey' is a method available for our class. The method can be public or private, but should be private since we don't need to use it outside this class.
   validate :no_monkey
 
+  # Call Backs
   after_initialize :set_defaults
   before_save :capitalize_title
 
@@ -44,7 +50,7 @@ class Question < ActiveRecord::Base
       end
 
       def no_monkey
-        if title && title.downcase.include?("monkey")
+        if self.title && self.title.downcase.include?("monkey")
           # two fields, error on attr, message
           errors.add(:title, "No monkey!!")
         end
