@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # attr_accessor :password_confirmation
   # add ^^ attributes for us.
   has_secure_password
-  validates :password, length: { minimum: 5 }
+  validates :password, length: { minimum: 5 }, on: :create
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true,

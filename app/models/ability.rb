@@ -6,11 +6,11 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
+      if user.admin?
+        can :manage, :all
+      else
+        can :read, :all
+      end
     # WE define an ability using the `can` method that comes from cancancan
     # :manage allows any action on the model (in this case the Question)
     # for example, edit, destroy, update, etc.
