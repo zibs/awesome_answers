@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :find_question, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, except: [:index, :show]
   #we can specify :only or :except to be more specific about the actions which the before_action applies to
 
   def index
@@ -11,7 +12,9 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
+    @question  = Question.new(question_params)
+    # we don't have access to the @current_user, but we access it through the method
+    @question.user = current_user
     if @question.save
       # redirect_to question_path({id: @question.id})
       # redirect_to question_path({id: @question})
@@ -75,5 +78,14 @@ class QuestionsController < ApplicationController
       def find_question
         @question = Question.find(params[:id])
       end
+
+      #####MOVED TO APPLICATION CONTROLLER!
+      # # exception for DoubleRenderError in the callbacks
+      # def authenticate_user
+      #   # unless session[:user_id]
+      #   unless user_signed_in?
+      #     redirect_to new_session_path
+      #   end
+      # end
 
 end

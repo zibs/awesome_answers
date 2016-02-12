@@ -4,6 +4,8 @@
 <%# law of demeter %>
 <%# lower dependencies between components of the system %>
 <p>Category: <%= @question.category_name %></p>
+<%# two dollar newspaper analogy %>
+<p>Created By: <%= @question.user_full_name %></p>
 
 <p>view count:<strong><%= @question.view_count %></strong></p>
 

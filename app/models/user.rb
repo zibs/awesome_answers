@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :questions, dependent: :nullify
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   # temporarily store password in memory
   # attr_accessor :password
@@ -11,6 +12,13 @@ class User < ActiveRecord::Base
   validates :email, presence: true,
             uniqueness: true,
             format: VALID_EMAIL_REGEX
+
+# omg
+  def full_name
+    "#{first_name} #{last_name}".titleize
+  end
+
+
 end
 
 

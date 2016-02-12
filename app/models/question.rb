@@ -5,6 +5,7 @@ class Question < ActiveRecord::Base
   has_many :answers, dependent: :nullify
   has_many :comments, through: :answers
   belongs_to :category
+  belongs_to :user
 
   # adding validation
   validates :title, presence: true,
@@ -43,6 +44,10 @@ class Question < ActiveRecord::Base
   # simplifies views by lowering dependencies on categories
   def category_name
     category.name if category
+  end
+
+  def user_full_name
+    user.full_name if user
   end
 
 
