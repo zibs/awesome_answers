@@ -1,4 +1,4 @@
-class AddIndiciesToQuestions < ActiveRecord::Migration
+class AddIndexesToQuestions < ActiveRecord::Migration
   def change
     # this will add an index (not unique) to the questions table and the title column
     add_index :questions, :title
