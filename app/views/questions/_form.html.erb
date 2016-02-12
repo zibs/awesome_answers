@@ -12,6 +12,10 @@
   <%= f.text_area :body %>
 </div>
 <div>
+  <%= f.label :category_id %>
+  <%= f.collection_select(:category_id, Category.order(:name), :id, :name) %>
+</div>
+<div>
   <%= f.submit %>
 </div>
 <% end %>
@@ -19,3 +23,7 @@
 <%# if @question IS persisted, then the form will use PATCH by adding a hidden field with name _method and value PATCH. The action URL will be question_path(@question) %>
 
 <%# we call 'f' the form object - will prepopulate values and will be able to access error messages as well. %>
+
+<%# to use f.collection_selectionw e %>
+<%# collection_select(:post, :author_id, Author.all, :id, :name_with_initial, prompt: true)
+ %>

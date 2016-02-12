@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
     # @question = Question.find(params[:id])
     @question.view_count += 1
     @question.save
-    
+
     @answer = Answer.new
   end
 
@@ -65,7 +65,7 @@ class QuestionsController < ApplicationController
       private
 
       def question_params
-        params.require(:question).permit([:title, :body])
+        params.require(:question).permit([:title, :body, :category_id])
       end
             #params =>  {"question"=>{"title"=>"Hello World", "body"=>"this is a test"}}
             # question = Question.new([:params])

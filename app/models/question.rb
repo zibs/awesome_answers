@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   # possible values for dependent are :destroy or :nullify. :Destroy will delete all associated answers. :Nullify will update the question_id to be NULL for the associated records (they won't get deleted)
 
   has_many :answers, dependent: :nullify
+  has_many :comments, through: :answers
+  belongs_to :category
 
   # adding validation
   validates :title, presence: true,
@@ -38,6 +40,12 @@ class Question < ActiveRecord::Base
   def self.search(term)
     where(["title ILIKE ? OR body ILIKE ?", "%#{term}%", "%#{term}%"]).order("view_count DESC")
   end
+  # simplifies views by lowering dependencies on categories
+  def category_name
+    category.name if category
+  end
+
+
 
     private
 

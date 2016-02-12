@@ -8,24 +8,33 @@ Rails.application.routes.draw do
   get "/hello" => "welcome#index"
   get "/about" => "welcome#about"
   get "/hello/:name" => "welcome#greet", as: :greet
-
   get "/subscribe" => "subscribe#index"
   post "/subscribe" => "subscribe#create"
 
   # helper method to make it easier to use new_question_path
 
   resources :questions do
-
     # targets general controller, not the particular record, *collection* of records
     get :search,      on: :collection
     # targeting a *particular* route that is of type question
     patch :mark_done, on: :member
     # nested route, has the full question_id
     post :approve
-
     # by defining 'resources' answers nesed inside 'resources :question' rails will define all the answers routes prepended wtih /questions/:question_id/...This enables us to have the question_id handy so that we can easily create a question with `question_id`.
     resources :answers, only: [:create, :destroy]
   end
+
+  # AVOID TRIPLE NESTING COMMENTS UNDER RESOURCES
+  # we don't need another set of answers routes, so we pass an empty string
+  resources :answers, only: [] do
+    resources :comments, only: [:create, :destory]
+  end
+
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+
 
   #########################################################
   #########################################################

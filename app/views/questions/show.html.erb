@@ -1,7 +1,11 @@
 <h1><%= @question.title %></h1>
-
 <p><%= @question.body %></p>
-<p>view count: <b><%= @question.view_count %></b></p>
+
+<%# law of demeter %>
+<%# lower dependencies between components of the system %>
+<p>Category: <%= @question.category_name %></p>
+
+<p>view count:<strong><%= @question.view_count %></strong></p>
 
 <p><%= @question.created_at %></p>
 <p><%= link_to "Edit", edit_question_path(@question)  %></p>
