@@ -8,13 +8,19 @@
 <p>Created By: <%= @question.user_full_name %></p>
 
 <p>view count:<strong><%= @question.view_count %></strong></p>
-
 <p><%= @question.created_at %></p>
+
+<% if can? :edit, @question %>
+<%# if user_signed_in? && current_user == @question.user %>
 <p><%= link_to "Edit", edit_question_path(@question)  %></p>
+<% end %>
+
 <%# method: :delete asks rails to send a delete request instead of get which is accomplished using javascript and jQuery %>
+<% if can? :destroy, @question %>
 <p><%= link_to "Delete", question_path(@question),
                          method: :delete,
                          data: { confirm: "Are you sure?" }  %></p>
+<% end  %>
 
 <hr>
 <h2>Answers</h2>
@@ -41,10 +47,20 @@
 </div>
 <% end %>
 
-<h2>Answers:</h2>
+<h2>Answers: </h2>
 <% @question.answers.each do |ans| %>
-  <%= ans.body %>
-  <%= link_to "Delete", [@question, ans], method: :delete, data: { confirm: "Are you sure?!" } %>
+  <p><%= ans.body %></p>
+  <p>(answer submitted by <%= ans.user_full_name %>)</p>
+
+  <% if can? :edit, ans %>
+    <p><%= link_to "Edit", edit_answer_path(ans) %></p>
+  <% end %>
+
+  <% if can? :destroy, ans %>
+    <%= link_to "Delete", [@question, ans],
+                 method: :delete,
+                 data: { confirm: "Are you sure?!" } %>
+  <% end %>
   <hr>
 <% end %>
 

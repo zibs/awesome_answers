@@ -46,6 +46,9 @@ class Question < ActiveRecord::Base
     category.name if category
   end
 
+  # delegate :full_name, to: :user, prefix: true, allow_nil: true
+  # could delete a full group of methods to a single delegate pass
+  # delegates the full_name method to the user
   def user_full_name
     user.full_name if user
   end

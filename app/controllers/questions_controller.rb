@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
+  # runs in the order defined
   before_action :find_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user, except: [:index, :show]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
+
   #we can specify :only or :except to be more specific about the actions which the before_action applies to
 
   def index
@@ -45,6 +48,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+
     # finds question to be edited
     # @question = Question.find(params[:id])
   end
@@ -77,6 +81,14 @@ class QuestionsController < ApplicationController
 
       def find_question
         @question = Question.find(params[:id])
+      end
+
+      def authorize_user
+        # use cancancan to check
+        unless can? :manage, @question
+        # if @question.user != current_user
+          redirect_to root_path , alert: "Access Denied"
+        end
       end
 
       #####MOVED TO APPLICATION CONTROLLER!
