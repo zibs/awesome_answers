@@ -1,14 +1,15 @@
 class AnswersController < ApplicationController
   before_action :find_answer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user #, except: [:index, :show]
-  before_action :authorize_user, only: [:edit, :update, :destroy]
   # don't need that since there are only these actions in the first place...
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def create
     @question = Question.find(params[:question_id])
     @answer = Answer.new(answer_params)
 
     @answer.question = @question
+    # current_user here requires the `if` statement in ApplicationController since it could raise an exception if there was no user?
     @answer.user = current_user
 
     # @answer = @question.answers.new(answer_params)
@@ -39,7 +40,7 @@ class AnswersController < ApplicationController
     # answer = question.find(params[:id])
     @answer = Answer.find(params[:id])
     @answer.destroy
-    redirect_to question_path(params[:question_id]), notice: "Answer Deleted!"
+    redirect_to question_path(params[:question_id]), alert: "Answer Deleted!"
 
   end
 
@@ -61,6 +62,3 @@ class AnswersController < ApplicationController
       end
 
 end
-
-
-# add_reference :questions, :category, index: true, foreign_key: true
