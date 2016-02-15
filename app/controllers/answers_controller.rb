@@ -25,6 +25,12 @@ class AnswersController < ApplicationController
   end
 
   def update
+    if @answer.update(answer_params)
+      redirect_to question_path(@answer.question_id), notice: "Question Updated"
+    else
+      flash[:alert] = "Not updated.."
+      render :edit
+    end
   end
 
   def destroy

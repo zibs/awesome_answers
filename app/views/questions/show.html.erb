@@ -52,9 +52,9 @@
   <p><%= ans.body %></p>
   <p>(answer submitted by <%= ans.user_full_name %>)</p>
 
-  <%# if can? :edit, ans %>
-    <p><%# link_to "Edit", edit_answer_path(ans) %></p>
-  <%# end %>
+  <% if can? :edit, ans %>
+    <p><%= link_to "Edit", edit_answer_path(ans) %></p>
+  <% end %>
 
   <% if can? :destroy, ans %>
     <%= link_to "Delete", [@question, ans],
