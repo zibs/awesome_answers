@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   #we can specify :only or :except to be more specific about the actions which the before_action applies to
 
   def index
-    @questions = Question.recent(10)
+    @questions = Question.recent(10).page(params[:page]).per(10)
   end
 
   def new
