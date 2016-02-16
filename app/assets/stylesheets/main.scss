@@ -1,7 +1,12 @@
+@import "bootstrap";
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
 
+nav.navbar {
+  margin-bottom: 50px;
+}
 section.alerts {
   // display: inline-block;
 }
@@ -12,11 +17,52 @@ div.alert {
   border-radius: 8px;
   margin-bottom: 5px;
 }
-.alert-alert {
-  background-color: rgba(251, 128, 128, 0.68);
-  color: rgb(219, 4, 31);
+
+i.fa-university {
+  color: white;
+  float: left;
+  margin-right: 15px;
 }
-.alert-notice {
-  background-color: rgba(105, 255, 103, 0.58);
-  color: rgb(31, 217, 0);
+
+i.fa-question-circle {
+   display: inline-block;
+}
+
+.nav-link.brand-homepage {
+  font-style: italic;
+
+  // font-size: 1.25em;
+}
+
+.questions ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.title {
+  padding: 30px 50px;;
+}
+
+
+.display-question {
+ color:black;
+}
+
+h4.emo-q {
+  font-size: 75px;
+  text-align: center;
+}
+
+h4.emo-ans {
+  font-size: 75px;
+  text-align: center;
+}
+
+
+section.manageables {
+   p {
+     display: inline-block;
+     margin-right: 10px;
+   }
 }

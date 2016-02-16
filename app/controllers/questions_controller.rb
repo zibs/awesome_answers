@@ -22,12 +22,12 @@ class QuestionsController < ApplicationController
       # redirect_to question_path({id: @question.id})
       # redirect_to question_path({id: @question})
       # redirect_to question_path(@question)
-      flash[:notice] = "That's a really thoughtful question -- thanks"
+      flash[:success] = "That's a really thoughtful question -- thanks"
       redirect_to @question
     else
         # matches the template (not the action) specified
         # or can specify full path "questions/new" etc.
-       flash[:alert] = "Question not created -- Check errors below"
+       flash[:danger] = "Question not created -- Check errors below"
        render :new # will go to default behaviour if not specified
     end
     # redirect issues another HTTP `GET` request - render remains in cycle
@@ -43,7 +43,6 @@ class QuestionsController < ApplicationController
     # @question = Question.find(params[:id])
     @question.view_count += 1
     @question.save
-
     @answer = Answer.new
   end
 
@@ -66,7 +65,7 @@ class QuestionsController < ApplicationController
   def destroy
     # question = Question.find(params[:id])
     @question.destroy
-    redirect_to root_path, notice: "Question deleted"
+    redirect_to root_path, flash: { danger: "Question Deleted" }
   end
 
       private

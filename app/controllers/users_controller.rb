@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       # session simply checks for the user.ID in the current session?
       # session[:user_id] = @user.id
       sign_in(@user)
-      redirect_to root_path, notice: "User Created!"
+      redirect_to(root_path, flash: { success: "User Created!"})
     else
       render :new
     end

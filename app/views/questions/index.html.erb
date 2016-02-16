@@ -1,8 +1,11 @@
-<h1>Recent Questions (<%= @questions.length %>)</h1>
-<%= image_tag("redpanda.jpg") %>
-<ul>
-<% @questions.each do |question| %>
-  <li><%= link_to "#{question.title}", question_path(question) %></li>
-  <hr>
-<% end %>
-</ul>
+<h1 class = "text-lg-center title">Recent Questions (<%= @questions.length %>)</h1>
+<section class="row questions">
+  <div class="col-md-6 col-md-offset-3">
+    <ul>
+      <% @questions.each do |question| %>
+        <li><%= link_to "#{question.title}", question_path(question) %></li>
+        <hr>
+      <% end %>
+    </ul>
+  </div>
+</section>

@@ -1,24 +1,41 @@
-<%= @question.errors.full_messages.join(", ") %>
-<%# form_for takes in an ActiveRecord object as a first argument. Then it looks at the object. If the object is not persisted (not yet saved to the database), the form will automatically use POST for its method. It will also automatically use questions_path as its action (convention is that the 'questions_path' will submit to the 'create' action). If persisted, then Rails assumes that we want to UPDATE it.  %>
-<%= form_for @question do |f| %>
-<%# we call 'f' the form object - will prepopulate values and will be able to access error messages as well. %>
-<div>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%# with `f` we don't need to use _tags %>
-</div>
-<div>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-</div>
-<div>
-  <%= f.label :category_id %>
-  <%= f.collection_select(:category_id, Category.order(:name), :id, :name) %>
-</div>
-<div>
-  <%= f.submit %>
+<%# @question.errors.full_messages.join(", ") %>
+
+<% if @question.errors.any? %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 alert alert-danger">
+    <p>The form contains <strong><%= pluralize(@question.errors.count, "error") %></strong>.</p>
+  <ul>
+    <% @question.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  </div>
 </div>
 <% end %>
+<%# form_for takes in an ActiveRecord object as a first argument. Then it looks at the object. If the object is not persisted (not yet saved to the database), the form will automatically use POST for its method. It will also automatically use questions_path as its action (convention is that the 'questions_path' will submit to the 'create' action). If persisted, then Rails assumes that we want to UPDATE it.  %>
+<div class="row">
+  <div class="form-group-lg col-md-6 col-md-offset-3">
+    <%= form_for @question do |f| %>
+<%# we call 'f' the form object - will prepopulate values and will be able to access error messages as well. %>
+    <div class = "form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+      <%# with `f` we don't need to use _tags %>
+    </div>
+    <div class = "form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div class = "form-group">
+      <%= f.label :category_id %>
+      <%= f.collection_select(:category_id, Category.order(:name), :id, :name, class: "form-control") %>
+    </div>
+    <div class = "form-group">
+      <%= f.submit "Ask Question!", class: "btn btn-primary-outline" %>
+    </div>
+    <% end %>
+  </div>
+</div>
 
 <%# if @question IS persisted, then the form will use PATCH by adding a hidden field with name _method and value PATCH. The action URL will be question_path(@question) %>
 
