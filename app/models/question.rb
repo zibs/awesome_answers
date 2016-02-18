@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
   # q.users = User.first
 
   has_many :favourites, dependent: :destroy
-  has_many :users, through: :favourites
+  has_many :favouriting_users, through: :favourites
 
   belongs_to :category
   belongs_to :user

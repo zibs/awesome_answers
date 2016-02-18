@@ -1,8 +1,12 @@
 <% if flash %>
   <section class="container">
-    <% flash.each do | message_type, message| %>
-    <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-    <% end  %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-lg-center">
+        <% flash.each do | message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end  %>
+      </div>
+    </div>
   </section>
 <% end %>
 

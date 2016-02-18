@@ -1,9 +1,14 @@
-<%= form_for @answer do |f|  %>
-<div>
-  <%=  f.label :body %>
-  <%= f.text_area :body %>
-</div>
-<div>
-  <%= f.submit %>
-</div>
-<% end %>
+<article class="row">
+  <section class="col-md-8 col-md-offset-2">
+  <h2 class="title text-lg-center">Edit Your Question</h2>
+    <%= form_for @answer do |f|  %>
+    <div class = "form-group">
+      <%#  f.label :body %>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div class = "form-group">
+      <%= f.submit "Submit", class: "btn btn-primary-outline btn-block" %>
+    </div>
+    <% end %>
+  </section>
+</article>

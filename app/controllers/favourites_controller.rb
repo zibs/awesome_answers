@@ -2,7 +2,7 @@ class FavouritesController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @favourites = current_user.favourites.order("created_at DESC")
+    @favourites = current_user.favourited_questions.order("created_at DESC")
   end
 
   def create
@@ -16,7 +16,7 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
-    favourite = Favourite.find(params[:id])
+    favourite = current_user.favourites.find(params[:id])
     favourite.destroy
     redirect_to question_path(params[:question_id]), flash: {warning: "un<3ed"}
   end
