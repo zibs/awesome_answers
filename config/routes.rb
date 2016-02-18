@@ -23,7 +23,9 @@ Rails.application.routes.draw do
     # by defining 'resources' answers nesed inside 'resources :question' rails will define all the answers routes prepended wtih /questions/:question_id/...This enables us to have the question_id handy so that we can easily create a question with `question_id`.
     resources :answers, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
+    resources :favourites, only: [:create, :destroy]
   end
+  resources :favourites, only: [:index]
 
   # AVOID TRIPLE NESTING COMMENTS UNDER RESOURCES
   # we don't need another set of answers routes, so we pass an empty string

@@ -20,9 +20,23 @@
     <% else %>
       <%= link_to "#{ Emoji.find_by_alias("thumbsup").raw}", question_likes_path(@question), method: :post, class: "emo-like" %>
   <% end %>
+<!-- ********************************************** -->
+<!-- ********************************************** -->
+<%# Favourite a Question %>
+<!-- ********************************************** -->
+<% favourite = @question.favourite_for(current_user) %>
+<% if favourite %>
+<%= link_to "Unfavourite", question_favourite_path(@question, favourite), method: :delete %>
+<% else %>
+<%= link_to "Favourite", question_favourites_path(@question), method: :post %>
+<% end %>
+
 
 <!-- ********************************************** -->
-
+<!-- ********************************************** -->
+<%# Edit or Destroy a Question %>
+<!-- ********************************************** -->
+<!-- ********************************************** -->
   <% if can? :edit, @question %>
   <%# if user_signed_in? && current_user == @question.user %>
   <p><%= link_to "Edit", edit_question_path(@question)  %></p>
@@ -34,6 +48,9 @@
                            data: { confirm: "Are you sure?" }  %></p>
   <% end  %>
 </section>
+<!-- ********************************************** -->
+<!-- ********************************************** -->
+
 <!-- CREATE ANSWERS -->
 <section class="create-answer col-md-6">
 <h4 class="emo-ans"><%= Emoji.find_by_alias("bulb").raw %></h4>

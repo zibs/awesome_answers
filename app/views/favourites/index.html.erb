@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="form-group-lg col-md-6 col-md-offset-3">
+    <h1 class="title text-lg-center">Favourites</h1>
+      <!-- <table class="table table-striped"> -->
+      <% if @favourites %>
+        <% @favourites.each do |fav| %>
+        <p><%= link_to "#{fav.question_title(fav.question_id)}", question_path(fav.question_id) %></p>
+        <% end %>
+      <% end %>
+    <!-- </table> -->
+  </div>
+</div>

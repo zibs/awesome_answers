@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   has_many :liked_questions, through: :likes, source: :question
   #  u.liked_questions << q
 
+  has_many :favourites, dependent: :destroy
+  has_many :favourited_questions, through: :favourites, source: :question
+
   # ^namespaced questions: so we rename to `liked_question` and then give it the true source `:question`
 
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

@@ -10,6 +10,9 @@ class Question < ActiveRecord::Base
   has_many :users, through: :likes
   # q.users = User.first
 
+  has_many :favourites, dependent: :destroy
+  has_many :users, through: :favourites
+
   belongs_to :category
   belongs_to :user
 
@@ -61,6 +64,10 @@ class Question < ActiveRecord::Base
 
   def like_for(user)
     likes.find_by(user_id: user)
+  end
+
+  def favourite_for(user)
+    favourites.find_by(user_id: user)
   end
 
 
