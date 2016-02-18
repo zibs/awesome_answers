@@ -8,6 +8,7 @@ class Question < ActiveRecord::Base
   # set up many to many association
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
+  # q.users = User.first
 
   belongs_to :category
   belongs_to :user
@@ -58,6 +59,9 @@ class Question < ActiveRecord::Base
     user.full_name if user
   end
 
+  def like_for(user)
+    likes.find_by(user_id: user)
+  end
 
 
     private

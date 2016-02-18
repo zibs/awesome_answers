@@ -58,7 +58,16 @@ h4.emo-ans {
   font-size: 75px;
   text-align: center;
 }
+a.emo-like {
+  font-size: 85px;
+}
 
+span.emo-unlike{
+  display:inline-block;
+  font-size: 85px;
+  transform: rotate(100deg);
+  -webkit-transform: rotate(100);
+}
 
 section.manageables {
    p {

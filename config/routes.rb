@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     post :approve
     # by defining 'resources' answers nesed inside 'resources :question' rails will define all the answers routes prepended wtih /questions/:question_id/...This enables us to have the question_id handy so that we can easily create a question with `question_id`.
     resources :answers, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
   end
 
   # AVOID TRIPLE NESTING COMMENTS UNDER RESOURCES

@@ -11,6 +11,18 @@
   <%# two dollar newspaper analogy: doesn't matter how you pay%>
   <p class = "text-muted">created by <%= @question.user_full_name %>, at <%= @question.created_at.strftime("%D") %></p>
 
+  <!-- ********************************************** -->
+  <!-- Create A Like-->
+  <%# like method to find the user who liked %>
+  <% like = @question.like_for(current_user) %>
+  <% if like %>
+      <%= link_to "<span class = 'emo-unlike'>#{ Emoji.find_by_alias("thumbsup").raw}".html_safe, question_like_path(@question, like), method: :delete, class: "emo-unlike" %>
+    <% else %>
+      <%= link_to "#{ Emoji.find_by_alias("thumbsup").raw}", question_likes_path(@question), method: :post, class: "emo-like" %>
+  <% end %>
+
+<!-- ********************************************** -->
+
   <% if can? :edit, @question %>
   <%# if user_signed_in? && current_user == @question.user %>
   <p><%= link_to "Edit", edit_question_path(@question)  %></p>
