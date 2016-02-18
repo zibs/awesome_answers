@@ -4,6 +4,11 @@ class Question < ActiveRecord::Base
 
   has_many :answers, dependent: :nullify
   has_many :comments, through: :answers
+
+  # set up many to many association
+  has_many :likes, dependent: :destroy
+  has_many :users, through: :likes
+
   belongs_to :category
   belongs_to :user
 

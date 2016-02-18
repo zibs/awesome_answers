@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   has_many :questions, dependent: :nullify
   has_many :answers, dependent: :nullify
+
+  has_many :likes, dependent: :destroy
+  has_many :liked_questions, through: :likes, source: :question
+  # ^namespaced questions: so we rename to `liked_question` and then give it the true source `:question`
+
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   # temporarily store password in memory
   # attr_accessor :password
@@ -14,7 +19,7 @@ class User < ActiveRecord::Base
             uniqueness: true,
             format: VALID_EMAIL_REGEX
 
-# omg
+
   def full_name
     "#{first_name} #{last_name}".titleize
   end

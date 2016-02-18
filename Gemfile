@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker', '~> 1.6.1'
 gem 'cowsay'
-gem 'cancancan'
+gem 'cancancan' 
 gem 'kaminari'
 
 
