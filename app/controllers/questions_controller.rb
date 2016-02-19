@@ -71,7 +71,8 @@ class QuestionsController < ApplicationController
       private
 
       def question_params
-        params.require(:question).permit([:title, :body, :category_id])
+        params.require(:question).permit([:title, :body, :category_id,
+                                                      { tag_ids: [] } ])
       end
             #params =>  {"question"=>{"title"=>"Hello World", "body"=>"this is a test"}}
             # question = Question.new([:params])

@@ -20,6 +20,10 @@ end
 ["Art", "Science", "Cats", "Sports", "Technology"].each do |cat|
   Category.create(name: cat)
 end
+
+["lyric", "conceptual", "confessional", "quotidian", "sestina", "concrete"].each do |tag|
+  Tag.create(name: tag)
+end
 # comments = []
 # q.answers.each { |ans| comments << ans.comments }
 # all_comments = comments.flatten
