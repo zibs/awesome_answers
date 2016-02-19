@@ -15,6 +15,7 @@ class AnswersController < ApplicationController
     # @answer = @question.answers.new(answer_params)
 
     if @answer.save
+      AnswersMailer.notify_question_owner(@answer).deliver_now
       redirect_to question_path(@question), notice: "Answer created!"
     else
       # rendering into another controller, hardcode
