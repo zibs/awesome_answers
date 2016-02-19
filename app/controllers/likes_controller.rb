@@ -17,7 +17,6 @@ class LikesController < ApplicationController
     like = current_user.likes.find(params[:id])
     like.destroy
     redirect_to question_path(params[:question_id]), flash: { warning: "Unliked"}
-
   end
 
 
