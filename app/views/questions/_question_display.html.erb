@@ -1,0 +1,10 @@
+<!-- <h4 class = "emo-q"><%# emojify(":neckbeard:") %></h4> -->
+<h4 class = "emo-q"><%= Emoji.find_by_alias("flashlight").raw %></h4>
+<h1><%= @question.title %></h1>
+<p><%= @question.body %></p>
+<%# law of demeter %>
+<%# lower dependencies between components of the system %>
+<p class= "text-muted">Category: <%= @question.category_name %></p>
+<p class = "text-muted">view count:<strong><%= @question.view_count %></strong></p>
+<%# two dollar newspaper analogy: doesn't matter how you pay%>
+<p class = "text-muted">created by <%= @question.user_full_name %>, at <%= @question.created_at.strftime("%D") %></p>

@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :favourites, only: [:create, :destroy]
   end
+  # scope :questions do
   resources :favourites, only: [:index]
+  # end ----------- if we wanted to prefix with /questions/
 
   # AVOID TRIPLE NESTING COMMENTS UNDER RESOURCES
   # we don't need another set of answers routes, so we pass an empty string

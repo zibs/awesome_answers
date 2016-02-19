@@ -1,60 +1,21 @@
 <article class="row">
 <section class="display-question col-md-6">
-  <!-- <h4 class = "emo-q"><%# emojify(":neckbeard:") %></h4> -->
-  <h4 class = "emo-q"><%= Emoji.find_by_alias("flashlight").raw %></h4>
-  <h1><%= @question.title %></h1>
-  <p><%= @question.body %></p>
-  <%# law of demeter %>
-  <%# lower dependencies between components of the system %>
-  <p class= "text-muted">Category: <%= @question.category_name %></p>
-  <p class = "text-muted">view count:<strong><%= @question.view_count %></strong></p>
-  <%# two dollar newspaper analogy: doesn't matter how you pay%>
-  <p class = "text-muted">created by <%= @question.user_full_name %>, at <%= @question.created_at.strftime("%D") %></p>
-
+  <%= render "question_display" %>
   <!-- ********************************************** -->
-  <!-- Create A Like-->
-  <%# like method to find the user who liked %>
-  <% like = @question.like_for(current_user) %>
-  <% if like %>
-      <%= link_to "<span class = 'emo-unlike'>#{ Emoji.find_by_alias("thumbsup").raw}".html_safe, question_like_path(@question, like), method: :delete, class: "emo-unlike" %>
-    <% else %>
-      <%= link_to "Like", question_likes_path(@question), method: :post, class: "" %>
-  <% end %>
-  <%= @question.likes.count %>
-<!-- ********************************************** -->
-<!-- ********************************************** -->
-<%# Favourite a Question %>
-<!-- ********************************************** -->
-<% favourite = @question.favourite_for(current_user) %>
-<% if favourite %>
-<%= link_to "Unfavourite", question_favourite_path(@question, favourite), method: :delete %>
-<% else %>
-<%= link_to "Favourite", question_favourites_path(@question), method: :post %>
-<% end %>
-<%= @question.favourites.count %>
-
-
-<!-- ********************************************** -->
-<!-- ********************************************** -->
-<%# Edit or Destroy a Question %>
-<!-- ********************************************** -->
-<!-- ********************************************** -->
-  <% if can? :edit, @question %>
-  <%# if user_signed_in? && current_user == @question.user %>
-  <p><%= link_to "Edit", edit_question_path(@question)  %></p>
-  <% end %>
-  <%# method: :delete asks rails to send a delete request instead of get which is accomplished using javascript and jQuery %>
-  <% if can? :destroy, @question %>
-  <p><%= link_to "Delete", question_path(@question),
-                           method: :delete,
-                           data: { confirm: "Are you sure?" }  %></p>
-  <% end  %>
+  <%# Create A Like  %>
+  <%= render "like_unlike" %>
+  <!-- ********************************************** -->
+  <%# Favourite a Question %>
+  <!-- ********************************************** -->
+  <%= render "favourite_unfavourite" %>
+  <!-- ********************************************** -->
+  <%# Edit or Destroy a Question %>
+  <!-- ********************************************** -->
+  <%= render "edit_or_destroy_question" %>
 </section>
-<!-- ********************************************** -->
-<!-- ********************************************** -->
 
 <!-- CREATE ANSWERS -->
-<section class="create-answer col-md-6">
+<section class="create-answer col-md-5 col-md-offset-1">
 <h4 class="emo-ans"><%= Emoji.find_by_alias("bulb").raw %></h4>
 
   <%# @answer.errors.full_messages.join(", ") %>
