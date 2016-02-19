@@ -16,6 +16,9 @@ class Question < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
+  has_many :votes, dependent: :destroy
+  has_many :voting_users, through: :votes, source: :question
+
   belongs_to :category
   belongs_to :user
 
@@ -71,6 +74,14 @@ class Question < ActiveRecord::Base
 
   def favourite_for(user)
     favourites.find_by(user_id: user)
+  end
+
+  def vote_for(user)
+    votes.find_by(user_id: user)
+  end
+
+  def vote_result
+    votes.up_count- votes.down_count
   end
 
 
