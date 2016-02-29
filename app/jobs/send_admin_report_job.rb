@@ -3,8 +3,7 @@ class SendAdminReportJob < ActiveJob::Base
 # arguments will be an array
   def perform(*args)
     # Do something later
-
-
+    puts "heyman"
   end
 end
 # SendAdminReportJob.perform_now
