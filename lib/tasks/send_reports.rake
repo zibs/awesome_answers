@@ -4,6 +4,7 @@ namespace :send_reports do
   desc "Send All Reports in the System"
   task :send_all => :environment do
     puts Cowsay.say("Sending Reports")
-    # SendAdminReportJob.perform_later()
+    SendAdminReportJob.perform_later
   end
 end
+ 

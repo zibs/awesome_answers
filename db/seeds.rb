@@ -8,7 +8,7 @@
 
 
 100.times do
-  q = Question.create title: Faker::Company.bs,
+  q = Question.create title: ( Faker::Company.bs + " ?"),
                    body: Faker::Lorem.paragraph,
                    view_count: rand(100)
   10.times do
@@ -17,7 +17,7 @@
   end
 end
 
-["Art", "Science", "Cats", "Sports", "Technology"].each do |cat|
+["Pop Poetry", "Poetics", "Pseudo Poetics", "Poesy", "Poetic Technologies", "The Poetry of Innovation"].each do |cat|
   Category.create(name: cat)
 end
 

@@ -1,7 +1,15 @@
+$brand-primary: #912139;
+// $brand-success: #ddc238;
+$state-success-text:   #b99b00;
+$state-success-bg: rgba(#f7da63, 0.51);
+$state-warning-text:             #000574;
+$state-warning-bg:               rgba(#81a8e3, 0.62);
+
 @import "bootstrap";
 
 body {
   font-family: 'Open Sans', sans-serif;
+    background-color: rgba(236, 236, 236, 0.75);
 }
 
 nav.navbar {
@@ -40,9 +48,15 @@ i.fa-question-circle {
   margin-left: 0;
   padding-left: 0;
 }
-
 .title {
   padding: 30px 50px;
+}
+.logo-title {
+  padding: 30px 50px;
+  border-bottom: 1px solid black;
+  line-height: 0;
+  width: 80%;
+  margin: 0 auto 50px auto;
 }
 
 
@@ -75,4 +89,10 @@ section.manageables {
      display: inline-block;
      margin-right: 10px;
    }
+}
+
+div.paginate-wrapper {
+  background-color: rgba(50, 50, 50, 0.84);
+  padding: 10px 30px;
+  border-radius: 8px;
 }
