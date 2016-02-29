@@ -13,28 +13,16 @@
     <%# Edit or Destroy a Question %>
     <%= render "questions/edit_or_destroy_question" %>
     <%# VOTE for a QUESTION %>
-    <% vote = @question.vote_for(current_user) %>
-    <% if !vote %>
-      <%= link_to "Vote Up", question_votes_path(@question, { vote: { up: true }}), method: :post %>
-      <%= @question.vote_result %>
-      <%= link_to "Vote Down", question_votes_path(@question, { vote: { up: false }}), method: :post %>
-    <% elsif vote.up? %>
-      <%= link_to "Remove Vote Up", question_vote_path(@question, vote), method: :delete  %>
-      <%= @question.vote_result %>
-      <%= link_to "Vote Down", question_vote_path(@question, vote, { vote: { up: false }}), method: :patch  %>
-    <% else %>
-      <%= link_to "Remove Vote Down", question_vote_path(@question, vote), method: :delete %>
-      <%= @question.vote_result %>
-      <%= link_to "Vote Up", question_vote_path(@question, vote, { vote: { up: true }}), method: :patch  %>
-    <% end %>
+    <div id="votes">
+      <%= render "votes/question_vote" %>
+    </div>
   </section>
-
 <!-- CREATE ANSWER FORM -->
   <div id = "answers-form">
     <%= render "/answers/form" %>
   </div>
-
 </article>
+
 <!-- LIST ANSWERS -->
 <article class="row">
   <hr>

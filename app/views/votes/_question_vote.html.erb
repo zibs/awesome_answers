@@ -1,0 +1,32 @@
+<% vote = @question.vote_for(current_user) %>
+
+<% if !vote %>
+  <%= link_to "Vote Up",
+      question_votes_path(@question, { vote: { up: true }}),
+      remote: true,
+      method: :post %>
+  <%= @question.vote_result %>
+  <%= link_to "Vote Down",
+      question_votes_path(@question, { vote: { up: false }}),
+      remote: true,
+      method: :post %>
+<% elsif vote.up? %>
+  <%= link_to "Remove Vote Up", question_vote_path(@question, vote),
+      remote: true,
+      method: :delete  %>
+  <%= @question.vote_result %>
+  <%= link_to "Vote Down",
+      question_vote_path(@question, vote, { vote: { up: false }}),
+      remote: true,
+      method: :patch  %>
+<% else %>
+  <%= link_to "Remove Vote Down",
+      question_vote_path(@question, vote),
+      remote: true,
+      method: :delete %>
+  <%= @question.vote_result %>
+  <%= link_to "Vote Up",
+      question_vote_path(@question, vote, { vote: { up: true }}),
+      remote: true,
+      method: :patch  %>
+<% end %>
