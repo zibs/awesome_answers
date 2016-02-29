@@ -3,7 +3,9 @@
     <%# display question %>
     <%= render "questions/question_display" %>
     <%# Create A Like  %>
-    <%= render "questions/like_unlike" %>
+    <div id="likes">
+      <%= render "/likes/question_like" %>
+    </div>
     <%# Favourite a Question %>
     <%= render "questions/favourite_unfavourite" %>
     <%# Edit or Destroy a Question %>
