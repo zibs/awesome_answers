@@ -1,58 +1,34 @@
 <article class="row">
-<section class="display-question col-md-6">
-  <%= render "questions/question_display" %>
-  <!-- ********************************************** -->
-  <%# Create A Like  %>
-  <%= render "questions/like_unlike" %>
-  <!-- ********************************************** -->
-  <%# Favourite a Question %>
-  <!-- ********************************************** -->
-  <%= render "questions/favourite_unfavourite" %>
-  <!-- ********************************************** -->
-  <%# Edit or Destroy a Question %>
-  <!-- ********************************************** -->
-  <%= render "questions/edit_or_destroy_question" %>
-  <!-- ********************************************** -->
-  <%# VOTE for a QUESTION %>
-  <% vote = @question.vote_for(current_user) %>
-  <% if !vote %>
-    <%= link_to "Vote Up", question_votes_path(@question, { vote: { up: true }}), method: :post %>
-    <%= @question.vote_result %>
-    <%= link_to "Vote Down", question_votes_path(@question, { vote: { up: false }}), method: :post %>
-  <% elsif vote.up? %>
-    <%= link_to "Remove Vote Up", question_vote_path(@question, vote), method: :delete  %>
-    <%= @question.vote_result %>
-    <%= link_to "Vote Down", question_vote_path(@question, vote, { vote: { up: false }}), method: :patch  %>
-  <% else %>
-    <%= link_to "Remove Vote Down", question_vote_path(@question, vote), method: :delete %>
-    <%= @question.vote_result %>
-    <%= link_to "Vote Up", question_vote_path(@question, vote, { vote: { up: true }}), method: :patch  %>
-  <% end %>
-
-</section>
-
-<!-- CREATE ANSWERS -->
-  <section class="create-answer col-md-5 col-md-offset-1">
-  <h4 class="emo-ans"><%= Emoji.find_by_alias("bulb").raw %></h4>
-    <%# @answer.errors.full_messages.join(", ") %>
-    <% if @answer.errors.any? %>
-    <ul>
-      <% @answer.errors.full_messages.each do |error_msg| %>
-        <li style = "color: red"><%= error_msg %></li>
-      <% end %>
-    </ul>
+  <section class="display-question col-md-6">
+    <%# display question %>
+    <%= render "questions/question_display" %>
+    <%# Create A Like  %>
+    <%= render "questions/like_unlike" %>
+    <%# Favourite a Question %>
+    <%= render "questions/favourite_unfavourite" %>
+    <%# Edit or Destroy a Question %>
+    <%= render "questions/edit_or_destroy_question" %>
+    <%# VOTE for a QUESTION %>
+    <% vote = @question.vote_for(current_user) %>
+    <% if !vote %>
+      <%= link_to "Vote Up", question_votes_path(@question, { vote: { up: true }}), method: :post %>
+      <%= @question.vote_result %>
+      <%= link_to "Vote Down", question_votes_path(@question, { vote: { up: false }}), method: :post %>
+    <% elsif vote.up? %>
+      <%= link_to "Remove Vote Up", question_vote_path(@question, vote), method: :delete  %>
+      <%= @question.vote_result %>
+      <%= link_to "Vote Down", question_vote_path(@question, vote, { vote: { up: false }}), method: :patch  %>
+    <% else %>
+      <%= link_to "Remove Vote Down", question_vote_path(@question, vote), method: :delete %>
+      <%= @question.vote_result %>
+      <%= link_to "Vote Up", question_vote_path(@question, vote, { vote: { up: true }}), method: :patch  %>
     <% end %>
-    <h5>Create an Answer:</h5>
-      <%= form_for [@question, @answer], remote: true do |f| %>
-        <div class = "form-group">
-          <%# f.label :body %>
-          <%= f.text_area :body, class: "form-control" %>
-        </div>
-        <div class = "form-group">
-          <%= f.submit "Answer", class: "btn btn-primary-outline btn-block", id: "hoho" %>
-        </div>
-      <% end %>
-    </section>
+  </section>
+
+<!-- CREATE ANSWER FORM -->
+  <div id = "answers-form">
+    <%= render "/answers/form" %>
+  </div>
 
 </article>
 <!-- LIST ANSWERS -->

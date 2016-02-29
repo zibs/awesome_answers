@@ -23,8 +23,9 @@ class AnswersController < ApplicationController
         # rendering into another controller, hardcode
         format.html { render "questions/show" }
         # respond to javascript, execute inner block as JS on client
-        format.js { render js: "alert('error happened');" }
-        end
+        # format.js { render js: "alert('error happened');" }
+        format.js { render :create_failure }
+      end
     end
   end
 
@@ -46,7 +47,7 @@ class AnswersController < ApplicationController
     # answer = question.find(params[:id])
     @answer = Answer.find(params[:id])
     @answer.destroy
-    redirect_to question_path(params[:question_id]), alert: "Answer Deleted!"
+    redirect_to question_path(params[:question_id]), flash: { danger: "Answer Deleted!" }
 
   end
 

@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker', '~> 1.6.1'
 gem 'cowsay'
 gem 'gemoji'
+gem 'quiet_assets'
 
 gem 'kaminari'
 gem "font-awesome-rails"

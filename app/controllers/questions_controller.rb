@@ -47,7 +47,6 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-
     # finds question to be edited
     # @question = Question.find(params[:id])
   end
@@ -92,7 +91,7 @@ class QuestionsController < ApplicationController
       end
 
 
-      
+
 
       #####MOVED TO APPLICATION CONTROLLER!
       # # exception for DoubleRenderError in the callbacks

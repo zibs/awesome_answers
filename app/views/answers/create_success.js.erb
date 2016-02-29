@@ -1,2 +1,6 @@
 <%# j is  a helper method from Rails to escape javascript so it doesn't break because of the quotes and new line characters %>
  $('.answers-loop').prepend("<%= j render 'answer', answer: @answer %>");
+ <%# need to reset @answer to be `Answer.new` because @answer is now persisted and this will make the form think we want to update it.  %>
+ <%= @answer = Answer.new %>
+ $("#answers-form").html("<%= j render 'form' %>");
+ $('#answer_body').val("");

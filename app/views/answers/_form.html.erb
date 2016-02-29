@@ -1,0 +1,21 @@
+<section class="create-answer col-md-5 col-md-offset-1">
+<h4 class="emo-ans"><%= Emoji.find_by_alias("bulb").raw %></h4>
+  <%# @answer.errors.full_messages.join(", ") %>
+  <% if @answer.errors.any? %>
+  <ul>
+    <% @answer.errors.full_messages.each do |error_msg| %>
+      <li style = "color: red"><%= error_msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <h5>Create an Answer:</h5>
+    <%= form_for [@question, @answer], remote: true do |f| %>
+      <div class = "form-group">
+        <%# f.label :body %>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+      <div class = "form-group">
+        <%= f.submit class: "btn btn-primary-outline btn-block", id: "hoho" %>
+      </div>
+    <% end %>
+</section>
