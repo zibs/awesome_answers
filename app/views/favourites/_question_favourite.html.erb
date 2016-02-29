@@ -1,0 +1,15 @@
+<% favourite = @question.favourite_for(current_user) %>
+
+<% if favourite %>
+  <%= link_to fa_icon("heart"),
+            question_favourite_path(@question, favourite),
+            remote: true,
+            method: :delete %>
+<% else %>
+  <%= link_to fa_icon("heart-o"),
+              question_favourites_path(@question),
+              remote: true,
+              method: :post %>
+<% end %>
+
+<%= @question.favourites.count %>

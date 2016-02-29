@@ -7,7 +7,9 @@
       <%= render "/likes/question_like" %>
     </div>
     <%# Favourite a Question %>
-    <%= render "questions/favourite_unfavourite" %>
+    <div id="favourites">
+      <%= render "/favourites/question_favourite" %>
+    </div>
     <%# Edit or Destroy a Question %>
     <%= render "questions/edit_or_destroy_question" %>
     <%# VOTE for a QUESTION %>
