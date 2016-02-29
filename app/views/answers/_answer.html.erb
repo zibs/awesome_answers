@@ -1,3 +1,7 @@
+<%# dom_id helper method takes in an acitve record model and generates an id that can be used on the page which helps ID this div uniquely. It will use snake case name of the model and then it will add the id of the record id passed prepended by _. E.g if we pass it 'Answer'object with ID 5 it will generate answer_5 %>
+
+<div id = "<%= dom_id(answer) %>">
+<!-- <div id = "answer_<%# answer.id %>"> -->
 <p><%= answer.body %></p>
 <p class = "text-muted">(answer submitted by <%= answer.user_full_name %>)</p>
 <section class="manageables">
@@ -8,7 +12,9 @@
   <% if can? :destroy, answer %>
     <%= link_to "Delete", [@question, answer],
                  method: :delete,
+                 remote: true,
                  data: { confirm: "Are you sure?!" } %>
   <% end %>
 </section>
 <hr>
+</div>

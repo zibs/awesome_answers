@@ -47,8 +47,11 @@ class AnswersController < ApplicationController
     # answer = question.find(params[:id])
     @answer = Answer.find(params[:id])
     @answer.destroy
-    redirect_to question_path(params[:question_id]), flash: { danger: "Answer Deleted!" }
-
+    respond_to do |format|
+      format.html { redirect_to question_path(params[:question_id]), flash: { danger: "Answer Deleted!" } }
+      format.js { render }
+      # this renders app/views/answers/destroy.js.erb}
+    end
   end
 
       private
