@@ -91,6 +91,9 @@ class QuestionsController < ApplicationController
         end
       end
 
+
+      
+
       #####MOVED TO APPLICATION CONTROLLER!
       # # exception for DoubleRenderError in the callbacks
       # def authenticate_user

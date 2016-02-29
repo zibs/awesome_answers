@@ -7,19 +7,24 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = Answer.new(answer_params)
-
     @answer.question = @question
     # current_user here requires the `if` statement in ApplicationController since it could raise an exception if there was no user?
     @answer.user = current_user
-
     # @answer = @question.answers.new(answer_params)
+    # special rails method respond_to takes a variable called format and a corresponding block
+    respond_to do |format|
+      if @answer.save
+        AnswersMailer.notify_question_owner(@answer).deliver_later
+        # execute code as html, passing in block of code to be executed.
+        format.html { redirect_to question_path((@question), flash: { success:  "Answer created!" }) }
 
-    if @answer.save
-      AnswersMailer.notify_question_owner(@answer).deliver_later
-      redirect_to question_path(@question), flash: { success:  "Answer created!" }
-    else
-      # rendering into another controller, hardcode
-      render "questions/show"
+        format.js { render :create_success }
+      else
+        # rendering into another controller, hardcode
+        format.html { render "questions/show" }
+        # respond to javascript, execute inner block as JS on client
+        format.js { render js: "alert('error happened');" }
+        end
     end
   end
 

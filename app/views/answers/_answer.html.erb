@@ -1,0 +1,14 @@
+<p><%= answer.body %></p>
+<p class = "text-muted">(answer submitted by <%= answer.user_full_name %>)</p>
+<section class="manageables">
+  <% if can? :edit, answer %>
+    <p><%= link_to "Edit", edit_answer_path(answer) %></p>
+  <% end %>
+
+  <% if can? :destroy, answer %>
+    <%= link_to "Delete", [@question, answer],
+                 method: :delete,
+                 data: { confirm: "Are you sure?!" } %>
+  <% end %>
+</section>
+<hr>

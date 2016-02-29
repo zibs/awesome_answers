@@ -1,17 +1,17 @@
 <article class="row">
 <section class="display-question col-md-6">
-  <%= render "question_display" %>
+  <%= render "questions/question_display" %>
   <!-- ********************************************** -->
   <%# Create A Like  %>
-  <%= render "like_unlike" %>
+  <%= render "questions/like_unlike" %>
   <!-- ********************************************** -->
   <%# Favourite a Question %>
   <!-- ********************************************** -->
-  <%= render "favourite_unfavourite" %>
+  <%= render "questions/favourite_unfavourite" %>
   <!-- ********************************************** -->
   <%# Edit or Destroy a Question %>
   <!-- ********************************************** -->
-  <%= render "edit_or_destroy_question" %>
+  <%= render "questions/edit_or_destroy_question" %>
   <!-- ********************************************** -->
   <%# VOTE for a QUESTION %>
   <% vote = @question.vote_for(current_user) %>
@@ -43,13 +43,13 @@
     </ul>
     <% end %>
     <h5>Create an Answer:</h5>
-      <%= form_for [@question, @answer] do |f| %>
+      <%= form_for [@question, @answer], remote: true do |f| %>
         <div class = "form-group">
           <%# f.label :body %>
           <%= f.text_area :body, class: "form-control" %>
         </div>
         <div class = "form-group">
-          <%= f.submit "Answer", class: "btn btn-primary-outline btn-block" %>
+          <%= f.submit "Answer", class: "btn btn-primary-outline btn-block", id: "hoho" %>
         </div>
       <% end %>
     </section>
@@ -60,22 +60,11 @@
   <hr>
   <section class="list-answers col-md-6 col-md-offset-3">
     <h1 class = "text-lg-center title"><strong>Answers:</strong></h1>
+    <div class="answers-loop">
     <% @question.answers.each do |ans| %>
-      <p><%= ans.body %></p>
-      <p class = "text-muted">(answer submitted by <%= ans.user_full_name %>)</p>
-      <section class="manageables">
-        <% if can? :edit, ans %>
-          <p><%= link_to "Edit", edit_answer_path(ans) %></p>
-        <% end %>
-
-        <% if can? :destroy, ans %>
-          <%= link_to "Delete", [@question, ans],
-                       method: :delete,
-                       data: { confirm: "Are you sure?!" } %>
-        <% end %>
-      </section>
-      <hr>
+      <%= render "answers/answer", answer: ans  %>
     <% end %>
+    </div>
   </section>
 </article>
 

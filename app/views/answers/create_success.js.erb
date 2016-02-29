@@ -1,0 +1,2 @@
+<%# j is  a helper method from Rails to escape javascript so it doesn't break because of the quotes and new line characters %>
+ $('.answers-loop').prepend("<%= j render 'answer', answer: @answer %>");

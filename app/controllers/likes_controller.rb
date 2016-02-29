@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
   before_action :authenticate_user
-  # this ensures that the user_id / question_id combination is unique which means users can only like a particular question once.
+  
 
   def create
     question = Question.find(params[:question_id])
