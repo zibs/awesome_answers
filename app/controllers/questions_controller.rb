@@ -47,6 +47,12 @@ class QuestionsController < ApplicationController
     # @question.view_count += 1
     @question.save
     @answer = Answer.new
+    @answers = @question.answers
+    respond_to do |format|
+      format.html { render}
+      format.json { render json: @question.to_json(include: :answers) }
+    end
+
   end
 
   def edit

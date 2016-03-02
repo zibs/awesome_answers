@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     # nested route, has the full question_id
     post :approve
     # by defining 'resources' answers nesed inside 'resources :question' rails will define all the answers routes prepended wtih /questions/:question_id/...This enables us to have the question_id handy so that we can easily create a question with `question_id`.
-    resources :answers, only: [:create, :destroy]
+    resources :answers, only: [:create, :destroy, :index]
     resources :likes, only: [:create, :destroy]
     resources :favourites, only: [:create, :destroy]
     resources :votes, only: [:create, :update, :destroy]
