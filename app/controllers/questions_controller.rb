@@ -5,9 +5,12 @@ class QuestionsController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   #we can specify :only or :except to be more specific about the actions which the before_action applies to
-
   def index
     @questions = Question.recent(10).page(params[:page]).per(10)
+    respond_to do |format|
+      format.html  { render }
+      format.json { render json: @questions.select(:id, :title, :view_count) }
+    end
   end
 
   def new
@@ -41,7 +44,7 @@ class QuestionsController < ApplicationController
   def show
     # find throws an exception when its not found.
     # @question = Question.find(params[:id])
-    @question.view_count += 1
+    # @question.view_count += 1
     @question.save
     @answer = Answer.new
   end

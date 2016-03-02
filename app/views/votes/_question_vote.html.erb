@@ -1,31 +1,31 @@
 <% vote = @question.vote_for(current_user) %>
 
 <% if !vote %>
-  <%= link_to "Vote Up",
+  <%= link_to fa_icon("arrow-circle-o-up"),
       question_votes_path(@question, { vote: { up: true }}),
       remote: true,
       method: :post %>
   <%= @question.vote_result %>
-  <%= link_to "Vote Down",
+  <%= link_to fa_icon("arrow-circle-o-down"),
       question_votes_path(@question, { vote: { up: false }}),
       remote: true,
       method: :post %>
 <% elsif vote.up? %>
-  <%= link_to "Remove Vote Up", question_vote_path(@question, vote),
+  <%= link_to fa_icon("arrow-circle-up"), question_vote_path(@question, vote),
       remote: true,
       method: :delete  %>
   <%= @question.vote_result %>
-  <%= link_to "Vote Down",
+  <%= link_to fa_icon("arrow-circle-o-down"),
       question_vote_path(@question, vote, { vote: { up: false }}),
       remote: true,
       method: :patch  %>
 <% else %>
-  <%= link_to "Remove Vote Down",
+  <%= link_to fa_icon("arrow-circle-o-up"),
       question_vote_path(@question, vote),
       remote: true,
       method: :delete %>
   <%= @question.vote_result %>
-  <%= link_to "Vote Up",
+  <%= link_to fa_icon("arrow-circle-down"),
       question_vote_path(@question, vote, { vote: { up: true }}),
       remote: true,
       method: :patch  %>
