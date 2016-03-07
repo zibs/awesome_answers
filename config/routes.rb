@@ -13,10 +13,10 @@ Rails.application.routes.draw do
 
 # namespace changes what it references
 # scope will not follow folder structure, and will not change the reference
-# override defaults to expect and render JSON 
+# override defaults to expect and render JSON
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :questions, only: [:index, :show]
+      resources :questions, only: [:index, :show, :create]
     end
   end
 

@@ -1,4 +1,6 @@
 class Api::BaseController < ApplicationController
+  protect_from_forgery with: :null_session
+  # contra the other controller, if we don't pass in an authenticity token, any cookies will be cleared.
   before_action :authenticate_api_key
 
   private
