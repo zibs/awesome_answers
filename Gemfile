@@ -32,7 +32,7 @@ gem "font-awesome-rails"
 # mailer gems
 gem "delayed_job_active_record"
 gem "delayed_job_web"
-
+gem "active_model_serializers"
 
 
 # Use ActiveModel has_secure_password
