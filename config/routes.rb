@@ -11,6 +11,15 @@ Rails.application.routes.draw do
   get "/subscribe" => "subscribe#index"
   post "/subscribe" => "subscribe#create"
 
+# namespace changes what it references
+# scope will not follow folder structure, and will not change the reference
+# override defaults to expect and render JSON 
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :questions, only: [:index, :show]
+    end
+  end
+
   # helper method to make it easier to use new_question_path
 
   resources :questions do

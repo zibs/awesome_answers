@@ -27,12 +27,12 @@ gem 'faker', '~> 1.6.1'
 gem 'cowsay'
 gem 'gemoji'
 gem 'quiet_assets'
-
 gem 'kaminari'
 gem "font-awesome-rails"
 # mailer gems
 gem "delayed_job_active_record"
 gem "delayed_job_web"
+
 
 
 # Use ActiveModel has_secure_password

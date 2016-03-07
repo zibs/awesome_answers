@@ -56,6 +56,7 @@ class Question < ActiveRecord::Base
   def self.search(term)
     where(["title ILIKE ? OR body ILIKE ?", "%#{term}%", "%#{term}%"]).order("view_count DESC")
   end
+
   # simplifies views by lowering dependencies on categories
   def category_name
     category.name if category
