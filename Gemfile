@@ -38,8 +38,10 @@ gem "active_model_serializers"
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan'
-
+# this gem is used for when we make a front-end-facing client that wants to make ajax requests
 gem 'rack-cors', :require => 'rack/cors'
+# omniauth twitter gem strategy
+gem 'omniauth-twitter'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

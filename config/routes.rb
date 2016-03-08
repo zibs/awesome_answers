@@ -50,6 +50,9 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/twitter/callback" => "callbacks#twitter"
+
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 #
 
