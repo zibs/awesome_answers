@@ -42,6 +42,7 @@ gem 'cancancan'
 gem 'rack-cors', :require => 'rack/cors'
 # omniauth twitter gem strategy
 gem 'omniauth-twitter'
+gem "twitter"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

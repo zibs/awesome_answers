@@ -1,15 +1,15 @@
 class Question < ActiveRecord::Base
-  # This assumes that the answer model has a question_id integer field that references the question.
-  # possible values for dependent are :destroy or :nullify. :Destroy will delete all associated answers. :Nullify will update the question_id to be NULL for the associated records (they won't get deleted)
+  attr_accessor :tweet_it
+  # this is useful if i  have a piece of data to work with which we don't need to save to the database.
 
   has_many :answers, dependent: :nullify
   has_many :comments, through: :answers
-
+  # This assumes that the answer model has a question_id integer field that references the question.
+  # possible values for dependent are :destroy or :nullify. :Destroy will delete all associated answers. :Nullify will update the question_id to be NULL for the associated records (they won't get deleted)
   # set up many to many association
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
   # q.users = User.first
-
   has_many :favourites, dependent: :destroy
   has_many :favouriting_users, through: :favourites, source: :user
 

@@ -22,6 +22,16 @@ class QuestionsController < ApplicationController
     # we don't have access to the @current_user, but we access it through the method
     @question.user = current_user
     if @question.save
+      # should be in background job, should be in a begin end block.
+      if @question.tweet_it
+        client = Twitter::REST::Client.new do |config|
+          config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+          config.consumer_secret     = ENV["TWITTER_SECRET_KEY"]
+          config.access_token        = current_user.twitter_token
+          config.access_token_secret = current_user.twitter_secret
+        end
+        client.update("New Question: #{@question.title}")
+      end
       # redirect_to question_path({id: @question.id})
       # redirect_to question_path({id: @question})
       # redirect_to question_path(@question)
@@ -79,8 +89,8 @@ class QuestionsController < ApplicationController
       private
 
       def question_params
-        params.require(:question).permit([:title, :body, :category_id,
-                                                      { tag_ids: [] } ])
+        params.require(:question).permit([:title, :body,
+              :category_id, { tag_ids: [] }, :tweet_it ])
       end
             #params =>  {"question"=>{"title"=>"Hello World", "body"=>"this is a test"}}
             # question = Question.new([:params])

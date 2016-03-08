@@ -32,8 +32,13 @@
     <div class="form-group">
       <%= f.collection_check_boxes(:tag_ids, Tag.order("name"), :id, :name) %>
     </div>
+    <% if current_user.signed_in_with_twitter? %>
+      <div class="form-group">
+        <%= f.check_box :tweet_it %> Tweet It?
+      </div>
+    <% end %>
     <div class = "form-group">
-      <%= f.submit "Ask Question!", class: "btn btn-primary-outline" %>
+      <%= f.submit "Ask Question!", class: "btn btn-primary-outline btn-block" %>
     </div>
     <% end %>
   </div>

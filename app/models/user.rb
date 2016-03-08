@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   before_create :generate_api_key
   # this enables us to store a Hash to the twitter_data field and retrieve it as a Has. Rails will take care of encoding/decoding the data of the Hash to and from the database. It will be stored as Text in the database...
-
   serialize :twitter_data, Hash
 
   has_many :questions, dependent: :nullify
@@ -39,7 +38,7 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}".titleize
   end
-  
+
   def find_twitter_user(omniauth_data)
     where(provider: "twitter", uid: omniauth_data["uid"]).first
   end
@@ -55,6 +54,10 @@ class User < ActiveRecord::Base
                 twitter_raw_data: twitter_data )
   end
 
+  def signed_in_with_twitter?
+    provider.present? && uid.present? && provider == "twitter"
+  end
+
     private
       # options: SecureRandom.hex,
       def generate_api_key
@@ -68,8 +71,6 @@ class User < ActiveRecord::Base
       end
       # we call self because we want to call the actual object. if we don't do do this, we would simply be setting a variable `api_key`.
       # IF WE WANT TO ONLY READ A VALUE, NO NEED TO CALL SELF. BUT IF WE WANT TO WRITE A VALUE, LET'S SELF IT.
-
-
 end
 
 
