@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}".titleize
   end
+  
+  def find_twitter_user(omniauth_data)
+    where(provider: "twitter", uid: omniauth_data["uid"]).first
+  end
 
   def self.create_from_twitter(twitter_data)
     name = twitter_data["info"]["name"].split(" ")
