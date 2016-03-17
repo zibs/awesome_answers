@@ -28,3 +28,4 @@ end
 # q.answers.each { |ans| comments << ans.comments }
 # all_comments = comments.flatten
 # all_comments.length >> 50
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')

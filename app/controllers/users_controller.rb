@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       # session simply checks for the user.ID in the current session?
       # session[:user_id] = @user.id
-      sign_in(@user)
+      user_sign_in(@user)
       redirect_to(root_path, flash: { success: "User Created!"})
     else
       render :new

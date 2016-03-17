@@ -33,7 +33,8 @@ gem "font-awesome-rails"
 gem "delayed_job_active_record"
 gem "delayed_job_web"
 gem "active_model_serializers"
-
+gem "devise"
+gem 'activeadmin', github: 'activeadmin'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
@@ -52,6 +53,8 @@ gem "twitter"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry-rails'
+  # gem "pry-byebug"
   gem 'byebug'
 end
 

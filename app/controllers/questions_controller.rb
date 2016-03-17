@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
     @questions = Question.recent(10).page(params[:page]).per(10)
     respond_to do |format|
       format.html  { render }
-      format.json { render json: @questions.select(:id, :title, :view_count) }
+      format.json { render json: @questions.select(:id, :title, :view_count, :created_at, :body) }
     end
   end
 
