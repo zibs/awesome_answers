@@ -98,7 +98,7 @@ class QuestionsController < ApplicationController
             # local methods and variables are the same
 
       def find_question
-        @question = Question.find(params[:id])
+        @question = Question.includes(:answers => :user).references(:answers).find(params[:id])
       end
 
       def authorize_user
