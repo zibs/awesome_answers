@@ -12,5 +12,5 @@ class QuestionSerializer < ActiveModel::Serializer
   def creation_date
     object.created_at.strftime("%Y-%b-%d")
   end
-  cd 
+  
 end

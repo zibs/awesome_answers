@@ -1,18 +1,22 @@
 $(document).ready(function(){
 
   $.ajax({
-    url: "http://localhost:3001/questions.json",
+    url: "http://localhost:3000/questions.json",
     method: "GET",
     error: function() {
       alert("Please reload");
     },
-    success: function(questions) {
+    success: function(data) {
+      console.log(data.questions);
+      console.log(data.questions[0].cap_title);
+      console.log(data.questions[0].id);
       $("#questions").html("");
       var template = $("#question-listing").html();
-      for (var i = 0, q = questions.length; i < q; i++) {
+      for (var i = 0, q = data.questions.length; i < q; i++) {
+        
         // Fetching the mustache template for a Question Listing
         // Mustache.render takes in a Mustache template and a JavaScript object, and then generates valid HTML by replacing any varaibles within {{}} from the attributes of teh object. So if we have a title in the template being rendered, the JS we pass in will launch that shit.
-        var renderedHtml = Mustache.render(template, questions[i]);
+        var renderedHtml = Mustache.render(template, data.questions[i]);
         // $("#questions").append("<p>" + questions[i].title + "</p><hr>");
         $("#questions").append(renderedHtml);
       }
@@ -21,7 +25,7 @@ $(document).ready(function(){
 
   $("#questions").on("click", "a", function() {
     $.ajax({
-      url: "http://localhost:3001/questions/" + $(this).data('id') + ".json",
+      url: "http://localhost:3000/questions/" + $(this).data('id') + ".json",
       method: "GET",
       error: function() {
           alert("Please reload");

@@ -9,14 +9,14 @@
   <script src="main.js"></script>
 </head>
 <body>
-  
+
   <script id="question-listing" type="x-tmpl-mustache">
-      <a href="javascript:void(0);" data-id = "{{id}}">{{ title }}</a>
+      <a href="javascript:void(0);" data-id = "{{id}}">{{ cap_title }}</a>
       <hr>
   </script>
 
   <script id="question-details" type = "x-tmpl-mustache">
-    <h2>{{title}}</h2>
+    <h2>{{cap_title}}</h2>
     <p>{{body}}</p>
     <p>created at: {{ created_at }}</p>
     <hr/>

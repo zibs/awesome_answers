@@ -1,28 +1,27 @@
-== README
+# Awesome Answers
+####A StackOverflow Clone.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sign up.
 
-Things you may want to cover:
+Ask a Question.
+Like a Question.
+Favourite A Question. Track your favourite questions.
 
-* Ruby version
+Create an Answer (and edit/delete)
 
-* System dependencies
+Ajax -- user authentication/authorization -- many to many relationships -- mailers -- front-end js client
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Bootstrap 4
+Font awesome
+Delayd Job
+Active Admin
+Omniauth Twitter
+Letter Opener
+Puma
+Kaminari
+Quiet Assets
+CanCanCan
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+![Screenshot
+](https://raw.github.com/zibs/awesome_answers/master/app/assets/images/readme.png)
